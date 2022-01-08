@@ -1,0 +1,13 @@
+name: DivineChildAddon
+version: '${project.version}'
+main: DivineChildAddon.Main
+api-version: 1.16
+authors: [ MomiNeko ]
+description: DivineChildAddon
+
+commands:
+  commandLog:
+    permission: DivineChild.CommandLog
+    aliases: cl
+    description: description
+    usage: /<command>
