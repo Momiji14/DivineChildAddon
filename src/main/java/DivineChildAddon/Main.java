@@ -33,7 +33,11 @@ public final class Main extends JavaPlugin {
         if (sender instanceof Player) {
             Player player = (Player) sender;
             PlayerData playerData = playerData(player);
-            if (cmd.getName().equalsIgnoreCase("commandLog")) {
+            if (cmd.getName().equalsIgnoreCase("systemLog")) {
+                playerData.SystemLog = !playerData.SystemLog;
+                player.sendMessage("§c[システムログ]§aが" + boolToString(playerData.SystemLog) + "§aになりました");
+                return true;
+            } else if (cmd.getName().equalsIgnoreCase("commandLog")) {
                 playerData.CommandLog = !playerData.CommandLog;
                 player.sendMessage("§c[コマンドログ]§aが" + boolToString(playerData.CommandLog) + "§aになりました");
                 return true;

@@ -5,12 +5,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerCommandSendEvent;
+import org.bukkit.event.command.UnknownCommandEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.Plugin;
 
 import static DivineChildAddon.DataBase.PlayerData.playerData;
+import static DivineChildAddon.Function.Log;
 
 public class Events implements Listener {
 
@@ -33,10 +34,14 @@ public class Events implements Listener {
     }
 
     @EventHandler
-    public void onCommand(PlayerCommandSendEvent event) {
-        for (Player player : Bukkit.getOnlinePlayers()) {
-            if (playerData(player).CommandLog) {
-                player.sendMessage("§c[CmdLog]§c" + event.getPlayer() + "§7: §c" + event.getCommands());
+    public void onCommand(UnknownCommandEvent event) {
+        if (event.getSender() instanceof Player) {
+            String log = "§c[CmdLog]§c" + event.getSender().getName() + "§7: §c" + event.getCommandLine();
+            Log(log);
+            for (Player player : Bukkit.getOnlinePlayers()) {
+                if (playerData(player).CommandLog) {
+                    player.sendMessage(log);
+                }
             }
         }
     }

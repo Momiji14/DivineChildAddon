@@ -11,3 +11,8 @@ commands:
     aliases: cl
     description: description
     usage: /<command>
+  systemLog:
+    permission: DivineChild.SystemLog
+    aliases: sl
+    description: description
+    usage: /<command>
